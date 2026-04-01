@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1640395113626268');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1640395113626268&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leggere 30 — Organize. Controle. Evolua.</title>
@@ -498,903 +516,305 @@
     background: var(--surf2);
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 14px;
   }
-
-  /* ── PLANILHA PREVIEW ─────────────────────────── */
-  .section-preview { padding: 80px 0; }
-
-  .preview-window {
-    background: var(--surf);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 48px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-    animation: float 6s ease-in-out infinite;
-  }
-  .preview-bar {
-    background: var(--surf2);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .dot {
-    width: 10px; height: 10px; border-radius: 50%;
-  }
-  .dot-r { background: #FF5F57; }
-  .dot-y { background: #FEBC2E; }
-  .dot-g { background: #28C840; }
-  .preview-title { font-size: 12px; color: var(--muted); margin-left: 8px; }
-
-  /* Simulação visual da planilha */
-  .preview-body { padding: 24px; }
-  .preview-topbar {
-    background: var(--surf2);
-    border-radius: 8px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .preview-topbar .logo-mini {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .preview-topbar .page-title { font-size: 13px; color: var(--cream); font-weight: 500; }
-  .gold-bar { height: 3px; background: var(--gold); border-radius: 2px; margin-bottom: 20px; }
-
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  @media (max-width: 600px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
-  .kpi-card {
-    background: var(--surf);
-    border-radius: 8px;
-    padding: 14px;
-    border-top: 2px solid;
-  }
-  .kpi-card.green-top { border-color: var(--green); }
-  .kpi-card.red-top   { border-color: var(--red); }
-  .kpi-card.gold-top  { border-color: var(--gold); }
-  .kpi-card.sage-top  { border-color: var(--sage); }
-  .kpi-label { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-  .kpi-value { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; }
-  .kpi-card.green-top .kpi-value { color: var(--green); }
-  .kpi-card.red-top   .kpi-value { color: var(--red); }
-  .kpi-card.gold-top  .kpi-value { color: var(--gold); }
-  .kpi-card.sage-top  .kpi-value { color: var(--sage); }
-
-  .reserve-bar-wrap {
-    background: var(--surf);
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .reserve-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
-  .reserve-track {
-    flex: 1;
-    height: 8px;
-    background: var(--surf2);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .reserve-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--sage), var(--green));
-    border-radius: 4px;
-    --w: 38%;
-    width: 0;
-    animation: barGrow 1.8s ease 1s forwards;
-  }
-  .reserve-pct { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--sage); white-space: nowrap; }
-
-  .table-preview { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .table-preview th {
-    text-align: left;
-    padding: 8px 10px;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--surf2);
-  }
-  .table-preview td {
-    padding: 9px 10px;
-    border-bottom: 1px solid rgba(46,51,71,0.5);
-    color: var(--cream);
-  }
-  .table-preview tr:last-child td { border-bottom: none; }
-  .table-preview tr:nth-child(odd) td { background: rgba(26,29,39,0.4); }
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 600;
-  }
-  .badge-r { background: rgba(224,92,92,0.15);  color: var(--red); }
-  .badge-g { background: rgba(92,184,122,0.15); color: var(--green); }
-
-  /* ── PREÇO ────────────────────────────────────── */
-  .section-preco { padding: 100px 0; }
-
-  .price-card {
-    max-width: 560px;
-    margin: 0 auto;
-    background: var(--surf);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 48px;
-  }
-  .price-header {
-    background: linear-gradient(135deg, var(--surf2), var(--surf3));
-    padding: 36px 40px 28px;
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-  }
-  .price-tag-label { font-size: 12px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-  .price-cross {
-    font-family: 'DM Mono', monospace;
-    font-size: 18px;
-    color: var(--muted);
-    text-decoration: line-through;
-    margin-bottom: 4px;
-  }
-  .price-main {
-    font-family: 'Playfair Display', serif;
-    font-size: 72px;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .price-main sup { font-size: 28px; vertical-align: top; margin-top: 14px; display: inline-block; }
-  .price-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
-  .price-body { padding: 32px 40px; }
-  .price-includes {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-  .price-includes li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
-  }
-  .price-includes li .tick { color: var(--green); font-size: 16px; flex-shrink: 0; }
-
-  .btn-buy {
-    display: block;
-    width: 100%;
-    background: var(--gold);
-    color: var(--bg);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    animation: pulse 2.5s ease 2s infinite;
-  }
-  .btn-buy:hover {
-    background: var(--gold-l);
-    transform: translateY(-2px);
-    box-shadow: 0 20px 56px rgba(201,168,76,0.3);
-  }
-  .price-micro {
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  /* ── GARANTIA ─────────────────────────────────── */
-  .section-garantia {
-    padding: 80px 0;
-    background: var(--surf);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .garantia-box {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .garantia-badge {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 28px;
-    background: rgba(201,168,76,0.06);
-  }
-  .garantia-badge .num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold); font-weight: 900; line-height: 1; }
-  .garantia-badge .dias { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); }
-
-  /* ── FAQ ──────────────────────────────────────── */
-  .section-faq { padding: 100px 0; }
-
-  .faq-list {
-    max-width: 680px;
-    margin: 48px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  details {
-    background: var(--surf);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  summary {
-    padding: 20px 24px;
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--cream);
-    transition: background 0.2s;
-  }
-  summary:hover { background: var(--surf2); }
-  summary::after {
-    content: '+';
-    color: var(--gold);
-    font-size: 22px;
-    font-weight: 300;
-    transition: transform 0.25s;
-  }
-  details[open] summary::after { transform: rotate(45deg); }
-  details[open] summary { background: var(--surf2); }
-  .faq-answer {
-    padding: 4px 24px 22px;
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ── FINAL CTA ────────────────────────────────── */
-  .section-finalcta {
-    padding: 120px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .section-finalcta::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .section-finalcta .section-title { margin-bottom: 16px; }
-  .section-finalcta .section-body { max-width: 500px; margin: 0 auto 40px; }
-
-  /* ── FOOTER ───────────────────────────────────── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 24px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  footer a { color: var(--muted); text-decoration: underline; }
-
-  /* ── MOBILE ───────────────────────────────────── */
-  @media (max-width: 640px) {
-    .hero-headline { font-size: 36px; }
-    .hero-sub { font-size: 17px; }
-    .price-main { font-size: 56px; }
-    .price-header { padding: 28px 24px 20px; }
-    .price-body { padding: 24px; }
-  }
-
-  /* ── DIVISOR DECORATIVO ───────────────────────── */
-  .divider {
-    border: none;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── STRIPE de cor lateral nos cards ─────────── */
-  .stripe-sage { border-left-color: var(--sage) !important; }
-  .stripe-gold { border-left-color: var(--gold) !important; }
 </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-logo">Leggere 30</div>
+    <a href="https://pay.cakto.com.br/3cu6hbg_794553" class="nav-cta">Quero organizar meu dinheiro →</a>
+  </nav>
 
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">Leggere 30</span>
-  <a href="#comprar" class="nav-cta">Quero organizar meu dinheiro →</a>
-</nav>
-
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="container">
-    <p class="hero-eyebrow">Sistema de organização financeira</p>
-    <h1 class="hero-headline">
-      Você sabe quanto<br>
-      ganhou esse mês.<br>
-      <em>Mas sabe para onde<br>foi cada real?</em>
-    </h1>
-    <p class="hero-sub">
-      O Leggere 30 é o sistema que transforma a bagunça financeira em clareza total — em 30 dias, com 10 minutos por semana. Sem planilha complicada. Sem precisar de disciplina de monge.
-    </p>
-    <div class="hero-cta-group">
-      <a href="#comprar" class="btn-primary">
-        Quero organizar meu dinheiro agora
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <p class="hero-guarantee">
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        Garantia de 7 dias — se não gostar, devolvemos tudo. Sem perguntas.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     PROBLEMA
-══════════════════════════════════════════════ -->
-<section class="section-problema">
-  <div class="container">
-    <span class="eyebrow reveal">O diagnóstico</span>
-    <h2 class="section-title reveal">Se isso soa familiar,<br>você não está sozinho.</h2>
-    <p class="section-body reveal">
-      Não é falta de esforço. Não é falta de inteligência. A maioria das pessoas fracassa com finanças porque usa o sistema errado — ou nenhum sistema.
-    </p>
-
-    <ul class="pain-list">
-      <li class="reveal">
-        <span class="icon">😓</span>
-        <span><strong>O salário chegou e em 10 dias já não sobrou nada</strong> — você não gastou em besteira, mas o dinheiro sumiu e você não consegue explicar para onde foi.</span>
-      </li>
-      <li class="reveal">
-        <span class="icon">💳</span>
-        <span><strong>A fatura do cartão veio maior do que você esperava</strong> — de novo. Você paga o mínimo, acumula juros, e o ciclo continua.</span>
-      </li>
-      <li class="reveal">
-        <span class="icon">📱</span>
-        <span><strong>Você tem assinaturas que nem lembra</strong> — R$ 19,90 aqui, R$ 29,90 ali. Somados, podem ser mais de R$ 300/mês saindo sem retorno.</span>
-      </li>
-      <li class="reveal">
-        <span class="icon">😰</span>
-        <span><strong>Uma emergência te derrubaria</strong> — você não tem reserva, e sabe disso. Qualquer imprevisto vira dívida.</span>
-      </li>
-      <li class="reveal">
-        <span class="icon">🔄</span>
-        <span><strong>Você já tentou planilha antes e desistiu</strong> — não porque você não tem disciplina, mas porque a planilha era complicada demais para manter.</span>
-      </li>
-    </ul>
-
-    <div class="callout-box reveal" style="margin-top: 44px;">
-      <p class="label">A virada de percepção</p>
-      <p>Você não falhava porque não tinha disciplina. Você falhava porque não tinha o sistema certo. A diferença entre quem organiza as finanças e quem não organiza não é força de vontade — é método.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     SOLUÇÃO
-══════════════════════════════════════════════ -->
-<section class="section-solucao">
-  <div class="container">
-    <span class="eyebrow reveal">A solução</span>
-    <h2 class="section-title reveal">Um sistema que funciona<br><em>para quem já tentou e desistiu.</em></h2>
-    <p class="section-body reveal">
-      O Leggere 30 não é mais uma planilha genérica do Google. É um sistema completo de organização financeira — com método, guia de uso e educação integrada — desenvolvido para funcionar na vida real de quem trabalha, tem contas, e não quer passar horas gerenciando dinheiro.
-    </p>
-    <p class="section-body reveal">
-      Em 30 dias, você vai ter uma fotografia financeira completa do seu dinheiro. Vai saber exatamente para onde vai cada real. Vai identificar onde você está vazando dinheiro sem perceber. E vai dar o primeiro passo real para construir uma reserva de emergência.
-    </p>
-
-    <div class="callout-box reveal stripe-sage" style="border-left-color: var(--sage);">
-      <p class="label" style="color:var(--sage);">Por que 10 minutos por semana funciona</p>
-      <p>O maior inimigo do controle financeiro não é a falta de vontade — é o atrito. Sistemas que exigem lançamento diário, categorização manual e horas de atenção fracassam porque a vida real não tem esse espaço. O Leggere 30 foi construído para o menor atrito possível. Você abre uma vez por semana, lança os movimentos, e fecha. O painel faz o resto.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     PREVIEW DA PLANILHA
-══════════════════════════════════════════════ -->
-<section class="section-preview">
-  <div class="container">
-    <span class="eyebrow reveal" style="text-align:center; display:block;">O produto</span>
-    <h2 class="section-title reveal" style="text-align:center;">Veja como parece<br>na sua tela.</h2>
-  </div>
-  <div class="container--wide" style="margin-top: 0;">
-    <div class="preview-window reveal">
-      <div class="preview-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <span class="preview-title">Leggere30_Basic_Dashboard.xlsx — Google Planilhas</span>
-      </div>
-      <div class="preview-body">
-        <div class="preview-topbar">
-          <span class="logo-mini">⬡ LEGGERE 30</span>
-          <span class="page-title">📊 Painel Principal</span>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Sistema de Organização Financeira</div>
+      <h1 class="hero-headline">Você sabe quanto<br>ganhou esse mês.<br><em>Mas sabe para onde<br>foi cada real?</em></h1>
+      <p class="hero-sub">O Leggere 30 é o sistema que transforma a bagunça financeira em clareza total — em 30 dias, com 10 minutos por semana. Sem planilha complicada. Sem precisar de disciplina de monge.</p>
+      <div class="hero-cta-group">
+        <a href="https://pay.cakto.com.br/3cu6hbg_794553" class="btn-primary">Quero organizar meu dinheiro agora →</a>
+        <div class="hero-guarantee">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Garantia de 7 dias — se não gostar, devolvemos tudo. Sem perguntas.
         </div>
-        <div class="gold-bar"></div>
+      </div>
+    </div>
+  </header>
 
-        <!-- KPIs -->
-        <div class="kpi-row">
-          <div class="kpi-card green-top">
-            <div class="kpi-label">💰 Receita Total</div>
-            <div class="kpi-value">R$ 4.200</div>
-          </div>
-          <div class="kpi-card red-top">
-            <div class="kpi-label">💸 Total Gastos</div>
-            <div class="kpi-value">R$ 2.218</div>
-          </div>
-          <div class="kpi-card gold-top">
-            <div class="kpi-label">📈 Saldo do Mês</div>
-            <div class="kpi-value">R$ 1.982</div>
-          </div>
-          <div class="kpi-card sage-top">
-            <div class="kpi-label">🎯 % Economia</div>
-            <div class="kpi-value">47,2%</div>
+  <section class="section-problema">
+    <div class="container">
+      <span class="eyebrow">O Diagnóstico</span>
+      <h2 class="section-title">Se isso soa familiar,<br><em>você não está sozinho.</em></h2>
+      <p class="section-body">Não é falta de esforço. Não é falta de inteligência. A maioria das pessoas fracassa com finanças porque usa o sistema errado — ou nenhum sistema.</p>
+      
+      <ul class="pain-list">
+        <li class="reveal">
+          <span class="icon">😓</span>
+          <p>O salário chegou e em 10 dias já não sobrou nada — você não gastou em besteira, mas o dinheiro sumiu e você não consegue explicar para onde foi.</p>
+        </li>
+        <li class="reveal">
+          <span class="icon">💳</span>
+          <p>A fatura do cartão veio maior do que você esperava — de novo. Você paga o mínimo, acumula juros, e o ciclo continua.</p>
+        </li>
+        <li class="reveal">
+          <span class="icon">📱</span>
+          <p>Você tem assinaturas que nem lembra — R$ 19,90 aqui, R$ 29,90 ali. Somados, podem ser mais de R$ 300/mês saindo sem retorno.</p>
+        </li>
+        <li class="reveal">
+          <span class="icon">😰</span>
+          <p>Uma emergência te derrubaria — você não tem reserva, e sabe disso. Qualquer imprevisto vira dívida.</p>
+        </li>
+        <li class="reveal">
+          <span class="icon">🔄</span>
+          <p>Você já tentou planilha antes e desistiu — não porque você não tem disciplina, mas porque a planilha era complicada demais para manter.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-solucao">
+    <div class="container">
+      <span class="eyebrow">A Virada de Percepção</span>
+      <p class="section-body" style="font-size: 20px; color: var(--cream);">Você não falhava porque não tinha disciplina. Você falhava porque não tinha o sistema certo. A diferença entre quem organiza as finanças e quem não organiza não é força de vontade — <strong>é método.</strong></p>
+
+      <div class="callout-box">
+        <div class="label">A Solução</div>
+        <p>Um sistema que funciona para quem já tentou e desistiu.</p>
+      </div>
+
+      <p class="section-body">O Leggere 30 não é mais uma planilha genérica do Google. É um sistema completo de organização financeira — com método, guia de uso e educação integrada — desenvolvido para funcionar na vida real de quem trabalha, tem contas, e não quer passar horas gerenciando dinheiro.</p>
+      <p class="section-body">Em 30 dias, você vai ter uma fotografia financeira completa do seu dinheiro. Vai saber exatamente para onde vai cada real. Vai identificar onde você está vazando dinheiro sem perceber. E vai dar o primeiro passo real para construir uma reserva de emergência.</p>
+    </div>
+  </section>
+
+  <section class="section-produto">
+    <div class="container">
+      <span class="eyebrow">Por que 10 minutos por semana funciona</span>
+      <h2 class="section-title">O maior inimigo do controle financeiro não é a falta de vontade — <em>é o atrito.</em></h2>
+      <p class="section-body">Sistemas que exigem lançamento diário, categorização manual e horas de atenção fracassam porque a vida real não tem esse espaço. O Leggere 30 foi construído para o menor atrito possível. Você abre uma vez por semana, lança os movimentos, e fecha. O painel faz o resto.</p>
+
+      <div class="entrega-grid">
+        <div class="entrega-card">
+          <div class="num">01 — PLANILHA</div>
+          <h3>Dashboard Leggere 30</h3>
+          <p>Interface visual com fundo escuro, painel de KPIs automático, mapa de gastos por categoria, controle de cartão, reserva com gamificação e simulador. Funciona no celular e no computador.</p>
+        </div>
+        <div class="entrega-card">
+          <div class="num">02 — MÉTODO</div>
+          <h3>5 Módulos de Ensino</h3>
+          <p>PDFs guiados com o método completo: Raio-X do Mês, Cartão não é Renda, Vazamento Silencioso, Peso do Parcelado e Sua Primeira Reserva. Cada módulo tem passo a passo + reflexões.</p>
+        </div>
+        <div class="entrega-card">
+          <div class="num">03 — GUIA</div>
+          <h3>Mini-Guia de Uso</h3>
+          <p>Dois perfis de onboarding: um para quem nunca usou planilha e um para quem já tem familiaridade. Com simulação real de preenchimento e exemplos práticos.</p>
+        </div>
+        <div class="entrega-card">
+          <div class="num">04 — ROTINA</div>
+          <h3>Checklist Semanal</h3>
+          <p>4 semanas de acompanhamento com sinais de progresso e alertas. Cada semana tem um foco diferente — do diagnóstico inicial até a primeira reserva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-modulos">
+    <div class="container">
+      <span class="eyebrow">Os Módulos de Ensino</span>
+      <h2 class="section-title">O método em<br><em>5 passos práticos.</em></h2>
+      <p class="section-body">Cada módulo resolve uma camada específica do problema financeiro. Você pode fazer tudo em um fim de semana — ou um módulo por semana ao longo do mês.</p>
+
+      <div class="modulo-list">
+        <div class="modulo-item">
+          <div class="modulo-num">01</div>
+          <div class="modulo-content">
+            <h4>O Raio-X do Mês</h4>
+            <p>Como encarar seus números pela primeira vez sem ansiedade — e sair com clareza total do que entra e do que sai.</p>
           </div>
         </div>
-
-        <!-- Barra de reserva -->
-        <div class="reserve-bar-wrap">
-          <span class="reserve-label">Reserva de emergência</span>
-          <div class="reserve-track">
-            <div class="reserve-fill"></div>
+        <div class="modulo-item">
+          <div class="modulo-num">02</div>
+          <div class="modulo-content">
+            <h4>O Cartão Não é Renda</h4>
+            <p>Como mapear sua fatura futura real e estabelecer um limite saudável antes que o ciclo de juros comece.</p>
           </div>
-          <span class="reserve-pct">38% da meta</span>
         </div>
-
-        <!-- Tabela lançamentos -->
-        <table class="table-preview">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Descrição</th>
-              <th>Categoria</th>
-              <th>Tipo</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="muted">01/03</td>
-              <td>Salário</td>
-              <td><span style="color:var(--sage); font-size:11px;">Salário</span></td>
-              <td><span class="badge badge-g">Receita</span></td>
-              <td style="color:var(--green); font-family:'DM Mono',monospace;">R$ 4.200,00</td>
-            </tr>
-            <tr>
-              <td class="muted">03/03</td>
-              <td>iFood — restaurante</td>
-              <td><span style="color:var(--sage); font-size:11px;">Alimentação</span></td>
-              <td><span class="badge badge-r">Saída</span></td>
-              <td style="color:var(--red); font-family:'DM Mono',monospace;">R$ 58,90</td>
-            </tr>
-            <tr>
-              <td class="muted">07/03</td>
-              <td>Netflix</td>
-              <td><span style="color:var(--sage); font-size:11px;">Assinatura</span></td>
-              <td><span class="badge badge-r">Saída</span></td>
-              <td style="color:var(--red); font-family:'DM Mono',monospace;">R$ 39,90</td>
-            </tr>
-            <tr>
-              <td class="muted">08/03</td>
-              <td>Supermercado Extra</td>
-              <td><span style="color:var(--sage); font-size:11px;">Alimentação</span></td>
-              <td><span class="badge badge-r">Saída</span></td>
-              <td style="color:var(--red); font-family:'DM Mono',monospace;">R$ 312,50</td>
-            </tr>
-            <tr>
-              <td class="muted">22/03</td>
-              <td>Aluguel</td>
-              <td><span style="color:var(--sage); font-size:11px;">Moradia</span></td>
-              <td><span class="badge badge-r">Saída</span></td>
-              <td style="color:var(--red); font-family:'DM Mono',monospace;">R$ 1.200,00</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     O QUE VOCÊ RECEBE
-══════════════════════════════════════════════ -->
-<section class="section-produto">
-  <div class="container">
-    <span class="eyebrow reveal">O que está incluído</span>
-    <h2 class="section-title reveal">Tudo que você precisa<br>para começar hoje.</h2>
-    <p class="section-body reveal">Não é só uma planilha. É um sistema completo com método, guia e acompanhamento.</p>
-
-    <div class="entrega-grid">
-      <div class="entrega-card reveal">
-        <p class="num">01 — PLANILHA</p>
-        <h3>Dashboard Leggere 30</h3>
-        <p>Interface visual com fundo escuro, painel de KPIs automático, mapa de gastos por categoria, controle de cartão, reserva com gamificação e simulador. Funciona no celular e no computador.</p>
-      </div>
-      <div class="entrega-card reveal">
-        <p class="num">02 — MÉTODO</p>
-        <h3>5 Módulos de Ensino</h3>
-        <p>PDFs guiados com o método completo: Raio-X do Mês, Cartão não é Renda, Vazamento Silencioso, Peso do Parcelado e Sua Primeira Reserva. Cada módulo tem passo a passo + reflexões.</p>
-      </div>
-      <div class="entrega-card reveal">
-        <p class="num">03 — GUIA</p>
-        <h3>Mini-Guia de Uso</h3>
-        <p>Dois perfis de onboarding: um para quem nunca usou planilha e um para quem já tem familiaridade. Com simulação real de preenchimento e exemplos práticos.</p>
-      </div>
-      <div class="entrega-card reveal">
-        <p class="num">04 — ROTINA</p>
-        <h3>Checklist Semanal</h3>
-        <p>4 semanas de acompanhamento com sinais de progresso e alertas. Cada semana tem um foco diferente — do diagnóstico inicial até a primeira reserva.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     OS 5 MÓDULOS
-══════════════════════════════════════════════ -->
-<section class="section-modulos">
-  <div class="container">
-    <span class="eyebrow reveal">Os módulos de ensino</span>
-    <h2 class="section-title reveal">O método em<br><em>5 passos práticos.</em></h2>
-    <p class="section-body reveal">Cada módulo resolve uma camada específica do problema financeiro. Você pode fazer tudo em um fim de semana — ou um módulo por semana ao longo do mês.</p>
-
-    <div class="modulo-list">
-      <div class="modulo-item reveal">
-        <span class="modulo-num">01</span>
-        <div class="modulo-content">
-          <h4>O Raio-X do Mês</h4>
-          <p>Como encarar seus números pela primeira vez sem ansiedade — e sair com clareza total do que entra e do que sai.</p>
+        <div class="modulo-item">
+          <div class="modulo-num">03</div>
+          <div class="modulo-content">
+            <h4>O Vazamento Silencioso</h4>
+            <p>Como identificar assinaturas e gastos automáticos que somem R$ 200–400/mês sem você perceber.</p>
+          </div>
         </div>
-      </div>
-      <div class="modulo-item reveal">
-        <span class="modulo-num">02</span>
-        <div class="modulo-content">
-          <h4>O Cartão Não é Renda</h4>
-          <p>Como mapear sua fatura futura real e estabelecer um limite saudável antes que o ciclo de juros comece.</p>
+        <div class="modulo-item">
+          <div class="modulo-num">04</div>
+          <div class="modulo-content">
+            <h4>O Peso Real do Parcelado</h4>
+            <p>Como calcular o comprometimento real das suas parcelas e por que "12× sem juros" pode estar te prendendo.</p>
+          </div>
         </div>
-      </div>
-      <div class="modulo-item reveal">
-        <span class="modulo-num">03</span>
-        <div class="modulo-content">
-          <h4>O Vazamento Silencioso</h4>
-          <p>Como identificar assinaturas e gastos automáticos que somem R$ 200–400/mês sem você perceber.</p>
-        </div>
-      </div>
-      <div class="modulo-item reveal">
-        <span class="modulo-num">04</span>
-        <div class="modulo-content">
-          <h4>O Peso Real do Parcelado</h4>
-          <p>Como calcular o comprometimento real das suas parcelas e por que "12× sem juros" pode estar te prendendo.</p>
-        </div>
-      </div>
-      <div class="modulo-item reveal">
-        <span class="modulo-num">05</span>
-        <div class="modulo-content">
-          <h4>Sua Primeira Reserva em 30 Dias</h4>
-          <p>Como criar o hábito de guardar dinheiro do zero — com o princípio de pagar a si mesmo primeiro.</p>
+        <div class="modulo-item">
+          <div class="modulo-num">05</div>
+          <div class="modulo-content">
+            <h4>Sua Primeira Reserva em 30 Dias</h4>
+            <p>Como criar o hábito de guardar dinheiro do zero — com o princípio de pagar a si mesmo primeiro.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════════════════════════════════════
-     PARA QUEM É / NÃO É
-══════════════════════════════════════════════ -->
-<section class="section-paraquem">
-  <div class="container">
-    <span class="eyebrow reveal">Para quem é</span>
-    <h2 class="section-title reveal">Isso é para você?</h2>
-    <p class="section-body reveal">O Leggere 30 foi criado para um perfil específico. Seja honesto consigo mesmo.</p>
+  <section class="section-paraquem">
+    <div class="container">
+      <span class="eyebrow">Para quem é</span>
+      <h2 class="section-title">Isso é para você?</h2>
+      <p class="section-body">O Leggere 30 foi criado para um perfil específico. Seja honesto consigo mesmo.</p>
 
-    <div class="two-col">
-      <div class="reveal">
-        <h3 class="gold">✓ É para você se...</h3>
-        <ul class="check-list">
-          <li><span class="chk chk-yes">✓</span><span>Você não sabe para onde vai boa parte do seu dinheiro todo mês</span></li>
-          <li><span class="chk chk-yes">✓</span><span>Você já tentou planilha ou app e desistiu — não por falta de vontade, mas por complicação</span></li>
-          <li><span class="chk chk-yes">✓</span><span>Você quer começar a guardar dinheiro mas nunca "sobra" nada para guardar</span></li>
-          <li><span class="chk chk-yes">✓</span><span>Você tem medo de uma emergência porque não tem reserva</span></li>
-          <li><span class="chk chk-yes">✓</span><span>Você quer ter clareza e controle — não virar especialista em finanças</span></li>
-          <li><span class="chk chk-yes">✓</span><span>Você tem no máximo 10 minutos por semana para dedicar a isso</span></li>
+      <div class="two-col">
+        <div>
+          <h3>✓ É para você se...</h3>
+          <ul class="check-list">
+            <li><div class="chk chk-yes">✓</div> Você não sabe para onde vai boa parte do seu dinheiro todo mês</li>
+            <li><div class="chk chk-yes">✓</div> Você já tentou planilha ou app e desistiu — não por falta de vontade, mas por complicação</li>
+            <li><div class="chk chk-yes">✓</div> Você quer começar a guardar dinheiro mas nunca "sobra" nada para guardar</li>
+            <li><div class="chk chk-yes">✓</div> Você tem medo de uma emergência porque não tem reserva</li>
+            <li><div class="chk chk-yes">✓</div> Você quer ter clareza e controle — não virar especialista em finanças</li>
+            <li><div class="chk chk-yes">✓</div> Você tem no máximo 10 minutos por semana para dedicar a isso</li>
+          </ul>
+        </div>
+        <div>
+          <h3>✗ Não é para você se...</h3>
+          <ul class="check-list">
+            <li><div class="chk chk-no">✗</div> Você já tem um sistema de controle financeiro funcionando bem</li>
+            <li><div class="chk chk-no">✗</div> Você procura um curso complexo de investimentos ou educação financeira avançada</li>
+            <li><div class="chk chk-no">✗</div> Você não está disposto a abrir o extrato do banco nem uma vez</li>
+            <li><div class="chk chk-no">✗</div> Você espera que a planilha resolva as finanças sem nenhum esforço da sua parte</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-diferencial">
+    <div class="container">
+      <span class="eyebrow">Por que funciona</span>
+      <h2 class="section-title">Diferente de tudo<br><em>que você já tentou.</em></h2>
+      
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="icon">⏱️</div>
+          <h4>10 min/semana</h4>
+          <p>Construído para o menor atrito possível. Funciona na vida real, não na vida ideal.</p>
+        </div>
+        <div class="diff-card">
+          <div class="icon">📱</div>
+          <h4>Funciona no celular</h4>
+          <p>Google Sheets no Android ou iPhone. Você acessa onde estiver, sem instalar nada.</p>
+        </div>
+        <div class="diff-card">
+          <div class="icon">🎓</div>
+          <h4>Ensino integrado</h4>
+          <p>Não é só planilha. São 5 módulos que ensinam o método por trás de cada aba.</p>
+        </div>
+        <div class="diff-card">
+          <div class="icon">⚡</div>
+          <h4>Use no mesmo dia</h4>
+          <p>Sem configuração, sem horas de setup. Você abre e começa a lançar em minutos.</p>
+        </div>
+        <div class="diff-card">
+          <div class="icon">🔒</div>
+          <h4>Seus dados, seus</h4>
+          <p>Tudo fica no seu Google Drive. Ninguém acessa, nenhum app conectado ao banco.</p>
+        </div>
+        <div class="diff-card">
+          <div class="icon">📊</div>
+          <h4>Visual de app</h4>
+          <p>Painel escuro com KPIs automáticos. Diferente de qualquer planilha que você já viu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-prova">
+    <div class="container">
+      <span class="eyebrow">O que dizem quem usa</span>
+      <h2 class="section-title">Resultados reais<br><em>de pessoas reais.</em></h2>
+
+      <div class="depo-grid">
+        <div class="depo-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Eu finalmente sei para onde vai o meu dinheiro. Descobri que pagava R$ 180/mês em assinaturas que nem usava. Cancelei tudo e já estou guardando R$ 150 por mês."</blockquote>
+          <div class="author">
+            <div class="author-avatar">M</div>
+            <span>Mariana S. — Analista, São Paulo</span>
+          </div>
+        </div>
+        <div class="depo-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Tentei uns 3 apps diferentes antes. Sempre parei depois de 2 semanas. Com o Leggere durei o mês inteiro — é simples o suficiente para manter."</blockquote>
+          <div class="author">
+            <div class="author-avatar">C</div>
+            <span>Carlos M. — Servidor público, BH</span>
+          </div>
+        </div>
+        <div class="depo-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Os módulos de ensino fazem toda a diferença. Não é só planilha — é entender por que você gasta como gasta. Isso muda a forma de tomar decisão."</blockquote>
+          <div class="author">
+            <div class="author-avatar">A</div>
+            <span>Ana L. — Professora, Curitiba</span>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; font-size: 11px; color: var(--muted); margin-top: 24px;">* Depoimentos de beta-testadores da versão inicial. Resultados podem variar.</p>
+    </div>
+  </section>
+
+  <section class="section-investimento" id="comprar">
+    <div class="container" style="padding: 100px 24px; text-align: center;">
+      <span class="eyebrow">O Investimento</span>
+      <h2 class="section-title">Tudo isso por<br><em>menos que um almoço.</em></h2>
+      <p class="section-body" style="max-width: 500px; margin: 0 auto 40px;">Um dia de juros no cheque especial custa mais do que isso. Uma sessão com coach financeiro custa R$ 300. O Leggere 30 custa uma única vez.</p>
+
+      <div class="reveal" style="background: var(--surf); border: 1px solid var(--gold); border-radius: 20px; padding: 48px 32px; max-width: 440px; margin: 0 auto; position: relative;">
+        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--bg); font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 20px; letter-spacing: 0.1em; text-transform: uppercase;">Acesso Vitalício</div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px;">Leggere 30</h3>
+        <div style="font-size: 16px; color: var(--muted); text-decoration: line-through;">De R$ 97</div>
+        <div style="font-size: 64px; font-weight: 800; color: var(--gold); line-height: 1; margin: 12px 0;">R$ 47</div>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 32px;">Pagamento único · Acesso imediato · Para sempre</p>
+
+        <ul class="check-list" style="text-align: left; margin-bottom: 40px; font-size: 14px;">
+          <li><div class="chk chk-yes">✓</div> Planilha Leggere 30 Basic Dashboard</li>
+          <li><div class="chk chk-yes">✓</div> 5 Módulos de ensino em PDF</li>
+          <li><div class="chk chk-yes">✓</div> Mini-Guia de uso (perfil iniciante + perfil tech)</li>
+          <li><div class="chk chk-yes">✓</div> Checklist Semanal — 4 semanas guiadas</li>
+          <li><div class="chk chk-yes">✓</div> Atualizações futuras inclusas</li>
         </ul>
-      </div>
-      <div class="reveal">
-        <h3 class="red">✗ Não é para você se...</h3>
-        <ul class="check-list">
-          <li><span class="chk chk-no">✗</span><span>Você já tem um sistema de controle financeiro funcionando bem</span></li>
-          <li><span class="chk chk-no">✗</span><span>Você procura um curso complexo de investimentos ou educação financeira avançada</span></li>
-          <li><span class="chk chk-no">✗</span><span>Você não está disposto a abrir o extrato do banco nem uma vez</span></li>
-          <li><span class="chk chk-no">✗</span><span>Você espera que a planilha resolva as finanças sem nenhum esforço da sua parte</span></li>
-        </ul>
+
+        <a href="https://pay.cakto.com.br/3cu6hbg_794553" class="btn-primary" style="width: 100%; display: flex;">Quero organizar meu dinheiro →</a>
+        <p style="font-size: 11px; color: var(--muted); margin-top: 16px;">Pagamento 100% seguro via Cakto</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════════════════════════════════════
-     DIFERENCIAL
-══════════════════════════════════════════════ -->
-<section class="section-diferencial">
-  <div class="container">
-    <span class="eyebrow reveal">Por que funciona</span>
-    <h2 class="section-title reveal">Diferente de tudo<br><em>que você já tentou.</em></h2>
-
-    <div class="diff-grid">
-      <div class="diff-card reveal">
-        <div class="icon">⏱️</div>
-        <h4>10 min/semana</h4>
-        <p>Construído para o menor atrito possível. Funciona na vida real, não na vida ideal.</p>
-      </div>
-      <div class="diff-card reveal">
-        <div class="icon">📱</div>
-        <h4>Funciona no celular</h4>
-        <p>Google Sheets no Android ou iPhone. Você acessa onde estiver, sem instalar nada.</p>
-      </div>
-      <div class="diff-card reveal">
-        <div class="icon">🎓</div>
-        <h4>Ensino integrado</h4>
-        <p>Não é só planilha. São 5 módulos que ensinam o método por trás de cada aba.</p>
-      </div>
-      <div class="diff-card reveal">
-        <div class="icon">⚡</div>
-        <h4>Use no mesmo dia</h4>
-        <p>Sem configuração, sem horas de setup. Você abre e começa a lançar em minutos.</p>
-      </div>
-      <div class="diff-card reveal">
-        <div class="icon">🔒</div>
-        <h4>Seus dados, seus</h4>
-        <p>Tudo fica no seu Google Drive. Ninguém acessa, nenhum app conectado ao banco.</p>
-      </div>
-      <div class="diff-card reveal">
-        <div class="icon">📊</div>
-        <h4>Visual de app</h4>
-        <p>Painel escuro com KPIs automáticos. Diferente de qualquer planilha que você já viu.</p>
-      </div>
+  <footer style="padding: 60px 0; border-top: 1px solid var(--border); text-align: center;">
+    <div class="container">
+      <div class="nav-logo" style="margin-bottom: 20px;">Leggere 30</div>
+      <p style="font-size: 13px; color: var(--muted);">© 2025 Leggere 30. Todos os direitos reservados.</p>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ══════════════════════════════════════════════
-     DEPOIMENTOS
-══════════════════════════════════════════════ -->
-<section class="section-prova">
-  <div class="container">
-    <span class="eyebrow reveal" style="text-align:center; display:block;">O que dizem quem usa</span>
-    <h2 class="section-title reveal" style="text-align:center;">Resultados reais<br>de pessoas reais.</h2>
+  <script>
+    // Animação de revelação no scroll
+    const observerOptions = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
 
-    <div class="depo-grid">
-      <div class="depo-card reveal">
-        <p class="stars">★★★★★</p>
-        <blockquote>"Eu finalmente sei para onde vai o meu dinheiro. Descobri que pagava R$ 180/mês em assinaturas que nem usava. Cancelei tudo e já estou guardando R$ 150 por mês."</blockquote>
-        <p class="author">
-          <span class="author-avatar">M</span>
-          <span>Mariana S. — Analista, São Paulo</span>
-        </p>
-      </div>
-      <div class="depo-card reveal">
-        <p class="stars">★★★★★</p>
-        <blockquote>"Tentei uns 3 apps diferentes antes. Sempre parei depois de 2 semanas. Com o Leggere durei o mês inteiro — é simples o suficiente para manter."</blockquote>
-        <p class="author">
-          <span class="author-avatar">C</span>
-          <span>Carlos M. — Servidor público, BH</span>
-        </p>
-      </div>
-      <div class="depo-card reveal">
-        <p class="stars">★★★★★</p>
-        <blockquote>"Os módulos de ensino fazem toda a diferença. Não é só planilha — é entender por que você gasta como gasta. Isso muda a forma de tomar decisão."</blockquote>
-        <p class="author">
-          <span class="author-avatar">A</span>
-          <span>Ana L. — Professora, Curitiba</span>
-        </p>
-      </div>
-    </div>
-
-    <p class="reveal" style="text-align:center; margin-top:32px; font-size:13px; color:var(--muted);">
-      * Depoimentos de beta-testadores da versão inicial. Resultados podem variar.
-    </p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     PREÇO
-══════════════════════════════════════════════ -->
-<section class="section-preco" id="comprar">
-  <div class="container">
-    <span class="eyebrow reveal" style="text-align:center; display:block;">O investimento</span>
-    <h2 class="section-title reveal" style="text-align:center;">Tudo isso por<br><em>menos que um almoço.</em></h2>
-    <p class="section-body reveal" style="text-align:center; max-width:480px; margin: 0 auto 0;">
-      Um dia de juros no cheque especial custa mais do que isso. Uma sessão com coach financeiro custa R$ 300. O Leggere 30 custa uma única vez.
-    </p>
-
-    <div class="price-card reveal">
-      <div class="price-header">
-        <p class="price-tag-label">Leggere 30 — Acesso Vitalício</p>
-        <p class="price-cross">De R$ 97</p>
-        <p class="price-main"><sup>R$</sup>47</p>
-        <p class="price-note">Pagamento único · Acesso imediato · Para sempre</p>
-      </div>
-      <div class="price-body">
-        <ul class="price-includes">
-          <li><span class="tick">✓</span> Planilha Leggere 30 Basic Dashboard</li>
-          <li><span class="tick">✓</span> 5 Módulos de ensino em PDF</li>
-          <li><span class="tick">✓</span> Mini-Guia de uso (perfil iniciante + perfil tech)</li>
-          <li><span class="tick">✓</span> Checklist Semanal — 4 semanas guiadas</li>
-          <li><span class="tick">✓</span> Atualizações futuras inclusas</li>
-          <li><span class="tick">✓</span> Garantia incondicional de 7 dias</li>
-        </ul>
-        <a href="https://pay.cakto.com.br/3cu6hbg_794553" class="btn-buy" onclick="fbq('track','InitiateCheckout',{value:47,currency:'BRL'});">
-          Quero o Leggere 30 agora — R$ 47
-        </a>
-        <p class="price-micro">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Pagamento seguro via Cakto · Cartão, Pix ou boleto
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     GARANTIA
-══════════════════════════════════════════════ -->
-<section class="section-garantia">
-  <div class="container">
-    <div class="garantia-box reveal">
-      <div class="garantia-badge">
-        <span class="num">7</span>
-        <span class="dias">DIAS</span>
-      </div>
-      <h2 class="section-title" style="margin-bottom: 16px;">Garantia incondicional.</h2>
-      <p class="section-body" style="text-align:center; max-width:520px; margin: 0 auto;">
-        Você tem 7 dias para testar o Leggere 30 sem nenhum risco. Se por qualquer motivo — ou sem motivo nenhum — você quiser o dinheiro de volta, é só pedir. Devolvemos tudo, sem perguntas, sem burocracia. Você não tem nada a perder.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     FAQ
-══════════════════════════════════════════════ -->
-<section class="section-faq">
-  <div class="container">
-    <span class="eyebrow reveal" style="text-align:center; display:block;">Dúvidas frequentes</span>
-    <h2 class="section-title reveal" style="text-align:center;">Perguntas que<br>todo mundo faz.</h2>
-
-    <div class="faq-list">
-      <details class="reveal">
-        <summary>Preciso saber usar Excel ou planilha?</summary>
-        <p class="faq-answer">Não. O Mini-Guia de Uso tem um módulo específico para quem nunca abriu uma planilha na vida — com passo a passo desde como abrir o arquivo no Google Sheets até como preencher o primeiro lançamento. Se você sabe usar o WhatsApp, consegue usar o Leggere 30.</p>
-      </details>
-      <details class="reveal">
-        <summary>Funciona no celular?</summary>
-        <p class="faq-answer">Sim. O Leggere 30 funciona no app Google Planilhas, disponível gratuitamente para Android e iPhone. Você pode lançar seus gastos diretamente do celular, sem precisar abrir o computador.</p>
-      </details>
-      <details class="reveal">
-        <summary>Quanto tempo preciso dedicar por semana?</summary>
-        <p class="faq-answer">Em média 10 minutos por semana. O Módulo 5 tem uma rotina detalhada de 3 blocos de 5 minutos que você pode fazer no dia do pagamento. O sistema foi construído para funcionar na vida real — não na vida ideal.</p>
-      </details>
-      <details class="reveal">
-        <summary>Meus dados bancários ficam seguros?</summary>
-        <p class="faq-answer">Completamente. O Leggere 30 não conecta com nenhum banco. Você digita os valores manualmente ou importa um arquivo CSV — que fica 100% no seu Google Drive. Nenhuma informação sua chega a servidor externo nenhum.</p>
-      </details>
-      <details class="reveal">
-        <summary>Funciona para autônomo e MEI também?</summary>
-        <p class="faq-answer">Sim. A planilha tem campos separados para múltiplas fontes de renda. Você pode lançar renda fixa, recebimentos variáveis e pagamentos de clientes sem problema.</p>
-      </details>
-      <details class="reveal">
-        <summary>E se eu já tentei planilha antes e desisti?</summary>
-        <p class="faq-answer">Esse é exatamente o perfil para quem o Leggere 30 foi feito. A diferença está no método integrado — os módulos de ensino explicam por que você provavelmente desistiu antes, e como estruturar uma rotina que resiste ao caos do dia a dia. Mais de 80% dos usuários que tiveram esse histórico conseguiram manter por mais de 4 semanas.</p>
-      </details>
-      <details class="reveal">
-        <summary>Recebo atualizações?</summary>
-        <p class="faq-answer">Sim. Você tem acesso vitalício ao produto e a todas as atualizações futuras — novas abas, novos módulos, melhorias de layout. Tudo incluso no valor único.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     CTA FINAL
-══════════════════════════════════════════════ -->
-<section class="section-finalcta">
-  <div class="container">
-    <span class="eyebrow" style="display:block; text-align:center; margin-bottom:16px;">Uma última coisa</span>
-    <h2 class="section-title" style="text-align:center;">
-      Daqui a 30 dias você<br>
-      pode estar nos dois lados:<br>
-      <em>ainda sem saber, ou sabendo.</em>
-    </h2>
-    <p class="section-body" style="text-align:center;">
-      O dinheiro que vai sair da sua conta hoje é o mesmo. A diferença é o que você vai saber sobre ele no final do mês.
-    </p>
-    <div style="display:flex; justify-content:center; flex-direction:column; align-items:center; gap:12px;">
-      <a href="https://pay.cakto.com.br/3cu6hbg_794553" class="btn-primary" onclick="fbq('track','InitiateCheckout',{value:47,currency:'BRL'});">
-        Quero organizar meu dinheiro agora
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <p class="hero-guarantee">
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        Garantia de 7 dias. R$ 47 uma única vez. Acesso imediato.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Leggere 30 · <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
-  <p style="margin-top:8px;">Dúvidas? <a href="mailto:contato@leggere30.com">contato@leggere30.com</a></p>
-</footer>
-
-
-<script>
-  // Intersection Observer para animações de scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1640395113626268');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1640395113626268&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
-
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
